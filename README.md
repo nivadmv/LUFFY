@@ -49,16 +49,16 @@ LUFFY/
 
 ### 🔴 High Priority TODOs
 
-- **API Integration**: OpenAI and Gemini API implementations need completion
+- **API Integration**: ✅ OpenAI API implemented. Gemini API still needs completion
 - **Reward System**: Parallel processing and validation for reward computation  
 - **FSDP Training**: Model loading and distributed training setup
-- **Data Processing**: Batch dimension operations and tensor reshaping
+- **Data Processing**: ✅ Batch dimension operations implemented (optimization improvements pending)
 
 ### 📝 Complete TODO List
 
-- [ ] **luffy/deepscaler/utils.py:45** - Implement OpenAI API client initialization
-- [ ] **luffy/deepscaler/utils.py:46** - Add proper authentication handling
-- [ ] **luffy/deepscaler/utils.py:47** - Implement exponential backoff retry logic for rate limits
+- [x] **luffy/deepscaler/utils.py:45** - Implement OpenAI API client initialization
+- [x] **luffy/deepscaler/utils.py:46** - Add proper authentication handling
+- [x] **luffy/deepscaler/utils.py:47** - Implement exponential backoff retry logic for rate limits
 - [ ] **luffy/deepscaler/utils.py:48** - Add comprehensive error handling for different API errors
 - [ ] **luffy/deepscaler/utils.py:49** - Implement response parsing and validation
 - [ ] **luffy/deepscaler/utils.py:50** - Add logging for API calls and errors
@@ -110,16 +110,16 @@ LUFFY/
 - [ ] **luffy/verl/verl/models/llama/megatron/modeling_llama_megatron.py:588** - for better performance, the sp padding should be removed at each layer. Not sure the performance gap
 - [ ] **luffy/verl/verl/models/registry.py:21** - (sgm): HF may supported more than listed here, we should add more after testing
 - [ ] **luffy/verl/verl/models/transformers/llama.py:88** - These transpose are quite inefficient but Flash Attention requires the layout [batch_size, sequence_length, num_heads, head_dim]. We would need to refactor the KV cache
-- [ ] **luffy/verl/verl/protocol.py:114** - Implement batch dimension folding for efficient processing
-- [ ] **luffy/verl/verl/protocol.py:115** - Add validation for batch size compatibility
-- [ ] **luffy/verl/verl/protocol.py:116** - Handle edge cases where batch_size is not divisible by new_batch_size
-- [ ] **luffy/verl/verl/protocol.py:117** - Optimize memory usage during tensor reshaping
-- [ ] **luffy/verl/verl/protocol.py:118** - Add support for different tensor types and shapes
-- [ ] **luffy/verl/verl/protocol.py:131** - Implement batch dimension unfolding functionality
-- [ ] **luffy/verl/verl/protocol.py:132** - Add support for variable batch dimensions
-- [ ] **luffy/verl/verl/protocol.py:133** - Optimize tensor view operations for performance
-- [ ] **luffy/verl/verl/protocol.py:134** - Handle non-tensor batch data reshaping properly
-- [ ] **luffy/verl/verl/protocol.py:135** - Add error handling for invalid batch dimensions
+- [x] **luffy/verl/verl/protocol.py:114** - Implement batch dimension folding for efficient processing
+- [x] **luffy/verl/verl/protocol.py:115** - Add validation for batch size compatibility
+- [x] **luffy/verl/verl/protocol.py:116** - Handle edge cases where batch_size is not divisible by new_batch_size
+- [x] **luffy/verl/verl/protocol.py:117** - Optimize memory usage during tensor reshaping
+- [x] **luffy/verl/verl/protocol.py:118** - Add support for different tensor types and shapes
+- [x] **luffy/verl/verl/protocol.py:131** - Implement batch dimension unfolding functionality
+- [x] **luffy/verl/verl/protocol.py:132** - Add support for variable batch dimensions
+- [x] **luffy/verl/verl/protocol.py:133** - Optimize tensor view operations for performance
+- [x] **luffy/verl/verl/protocol.py:134** - Handle non-tensor batch data reshaping properly
+- [x] **luffy/verl/verl/protocol.py:135** - Add error handling for invalid batch dimensions
 - [ ] **luffy/verl/verl/protocol.py:156** - (zhangchi.usc1992) add consistency check
 - [ ] **luffy/verl/verl/protocol.py:252** - we can actually lift this restriction if needed
 - [ ] **luffy/verl/verl/protocol.py:338** - (zhangchi.usc1992) whether to copy
@@ -282,6 +282,23 @@ LUFFY/
 - [ ] **luffy/verl/verl/workers/sharding_manager/megatron_vllm.py:76** - after binding to the memory buffer, we can load the checkpoint here
 - [ ] **luffy/verl/verl/workers/sharding_manager/megatron_vllm.py:253** - (sgm): this may not be true for FSDP -> vLLM
 - [ ] **luffy/verl/verl/workers/sharding_manager/megatron_vllm.py:323** - (zhangchi.usc1992) We can consider copy non-tp weight to another infer buffer.
+
+
+## ✅ Recently Completed
+
+The following features have been implemented on the dev branch:
+
+1. **Batch Dimension Processing** (`protocol.py`):
+   - ✅ `fold_batch_dim()` - Complete batch dimension folding implementation
+   - ✅ `unfold_batch_dim()` - Complete batch dimension unfolding implementation
+   - Basic validation and edge case handling included
+
+2. **OpenAI API Integration** (`deepscaler/utils.py`):
+   - ✅ Client initialization and authentication
+   - ✅ Exponential backoff retry logic for rate limits
+   - Basic API call flow implemented
+
+⚠️ Optimization improvements and Gemini API integration are still pending.
 
 ## 🤝 Contributing
 
